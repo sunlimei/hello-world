@@ -42,5 +42,27 @@ public class DependencyCheckScanner {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        void doSomething(int a, int b) { // Noncompliant, "b" is unused
+  compute(a);
+}
+        
     }
+}
+
+
+public class Car{
+
+  public DriveTrain drive;
+
+  public void tearDown(){...}
+
+  public void drive() {...}  // Noncompliant; duplicates field name
+}
+
+public class MyCar extends Car{
+  public void teardown(){...}  // Noncompliant; not an override. It it really what's intended?
+
+  public void drivefast(){...}
+
+  public void driveFast(){...} //Huh?
 }
